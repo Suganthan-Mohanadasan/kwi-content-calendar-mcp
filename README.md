@@ -35,21 +35,25 @@ When `parse_clustering_csv` runs, it returns:
 
 #### Sample output
 
-Content Calendar sheet:
+Content Calendar sheet, all 19 columns with the TOTALS row at the bottom:
 
-![Content Calendar sheet](screenshots/07_content_calendar.png)
+![Content Calendar sheet](screenshots/04_content_calendar.jpg)
 
-Pages to Scrape with "What to Look For" instructions:
+The Action Rationale column writes out intent mismatches in plain English so the reason each CREATE was scheduled is visible at a glance:
 
-![Pages to Scrape sheet](screenshots/06_pages_to_scrape.png)
+![Intent mismatch reasons in Action Rationale column](screenshots/05_intent_mismatch.jpg)
 
-Priority Backlog with Hub column:
+Gap Analysis Logic documentation sheet, a 4-step playbook for the scraping pass that feeds the writing brief:
 
-![Priority Backlog sheet](screenshots/05_priority_backlog.png)
+![Gap Analysis Logic sheet](screenshots/06_gap_analysis_logic.jpg)
 
-Summary sheet with principles and metrics:
+Summary sheet with the Cluster-Level Analysis Approach principles table and the Calendar Metrics block:
 
-![Summary sheet](screenshots/04_summary.png)
+![Summary sheet](screenshots/07_summary.jpg)
+
+Priority Backlog with Hub column for topical clustering context:
+
+![Priority Backlog sheet](screenshots/08_priority_backlog.png)
 
 ## Setup
 
@@ -186,7 +190,7 @@ The export includes all required columns: cluster metrics, intent classification
 
 ## Blog post
 
-Full walkthrough with screenshots and use cases: [keywordinsights.ai/blog/ai-content-calendar-mcp/](https://www.keywordinsights.ai/blog/ai-content-calendar-mcp/)
+Full walkthrough with screenshots and use cases: [How I Turn 5,000 Keywords Into a Content Calendar in 3 Minutes (with Claude and an MCP Server)](https://www.keywordinsights.ai/blog/how-i-turn-5000-keywords-into-a-content-calendar-in-3-minutes-with-claude-and-an-mcp-server/)
 
 ## License
 
