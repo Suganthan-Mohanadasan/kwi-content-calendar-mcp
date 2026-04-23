@@ -2,7 +2,7 @@
 
 An MCP server that turns a Keyword Insights clustering CSV into a prioritised, week by week content calendar. Works with Claude Desktop, Claude Code, ChatGPT, Windsurf, Cursor, Manus AI, and any MCP-compatible tool. Your AI handles the strategic analysis. The server handles CSV parsing, cluster enrichment, and a formatted Excel export with 5 sheets.
 
-![MCP loaded in Claude Desktop](screenshots/01_mcp_tools_loaded.png)
+![Content Calendar sheet with 19 columns, colour-coded actions, and a TOTALS row](screenshots/04_content_calendar.jpg)
 
 ## What it does
 
@@ -34,10 +34,6 @@ When `parse_clustering_csv` runs, it returns:
 | **Summary** | Two sections. First: six "Cluster-Level Analysis Approach" principles explaining how the calendar was built. Second: Calendar Metrics including total clusters analysed, scheduled items, items needing page scraping, total cluster search volume, opportunity, keywords covered, and average priority score |
 
 #### Sample output
-
-Content Calendar sheet, all 19 columns with the TOTALS row at the bottom:
-
-![Content Calendar sheet](screenshots/04_content_calendar.jpg)
 
 The Action Rationale column writes out intent mismatches in plain English so the reason each CREATE was scheduled is visible at a glance:
 
@@ -95,7 +91,9 @@ npm run build
 
 **ChatGPT Desktop / Windsurf / Cursor:** Same pattern. Point your MCP config at `dist/index.js` using stdio transport.
 
-Restart your AI tool after adding the config.
+Restart your AI tool after adding the config. Once loaded, the two tools appear in the MCP server list:
+
+![Claude Code showing kwi-content-calendar MCP server with parse_clustering_csv and export_content_calendar tools](screenshots/01_mcp_tools_loaded.png)
 
 ## Parameters
 
