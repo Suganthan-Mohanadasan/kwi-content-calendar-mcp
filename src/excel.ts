@@ -363,7 +363,9 @@ function buildBacklogSheet(wb: ExcelJS.Workbook, items: CalendarItem[]): void {
   });
   styleHeaderRow(headerRow);
 
-  const sorted = [...items].sort((a, b) => (b.priority_score ?? 0) - (a.priority_score ?? 0));
+  const sorted = [...items]
+    .sort((a, b) => (b.priority_score ?? 0) - (a.priority_score ?? 0))
+    .slice(0, 30);
 
   sorted.forEach((item, i) => {
     const row = sheet.getRow(4 + i);
