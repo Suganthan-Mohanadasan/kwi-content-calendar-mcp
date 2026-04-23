@@ -94,6 +94,13 @@ Return a JSON object with exactly two keys:
   "calendar": array of items (total = pieces_per_week * weeks)
   "backlog": array of next 30 priority items not in calendar
 
+When calling export_content_calendar, pass these metadata values so the Summary sheet and
+Content Calendar title/subtitle render correctly:
+  total_clusters  -> the "Unique clusters" figure from parse_clustering_csv stats
+  domain          -> the client domain supplied by the user
+  pieces_per_week -> the user's pieces_per_week setting
+  weeks           -> the user's weeks setting
+
 Each item shape:
 {
   "keyword": string,

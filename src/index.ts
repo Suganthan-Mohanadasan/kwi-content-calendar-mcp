@@ -87,13 +87,17 @@ Now analyse this data following the instructions above and return the JSON objec
 
 server.tool(
   "export_content_calendar",
-  "Takes a content calendar JSON (with 'calendar' and 'backlog' arrays of CalendarItem objects) and exports it as a formatted Excel workbook (4 sheets: Calendar, Pages to Scrape, Priority Backlog, Summary) and a flat CSV file.",
+  "Takes a content calendar JSON (with 'calendar' and 'backlog' arrays of CalendarItem objects) and exports it as a formatted Excel workbook (5 sheets: Content Calendar, Gap Analysis Logic, Pages to Scrape, Priority Backlog, Summary) and a flat CSV file.",
   {
     calendar_json: z.string().describe("JSON string with 'calendar' and 'backlog' arrays"),
     output_dir: z.string().describe("Directory to save the output files"),
-    filename_prefix: z.string().default("content_calendar").describe("Prefix for output filenames")
+    filename_prefix: z.string().default("content_calendar").describe("Prefix for output filenames"),
+    total_clusters: z.number().min(0).default(0).describe("Total clusters in source CSV (from parse_clustering_csv stats.uniqueClusters)"),
+    domain: z.string().default("").describe("Client domain used for calendar generation"),
+    pieces_per_week: z.number().min(1).max(10).default(3).describe("Content pieces per week used in generation"),
+    weeks: z.number().min(1).max(52).default(4).describe("Number of weeks in the calendar")
   },
-  async ({ calendar_json, output_dir, filename_prefix }) => {
+  async ({ calendar_json, output_dir, filename_prefix, total_clusters, domain, pieces_per_week, weeks }) => {
     try {
       let data: { calendar?: unknown; backlog?: unknown };
       try {
@@ -125,8 +129,14 @@ server.tool(
       const safePrefix = filename_prefix.replace(/[^a-z0-9_-]/gi, "_").toLowerCase();
       const baseName = `${safePrefix}_${today}`;
 
-      // Build Excel
-      const excelBuf = await buildExcel(calendar, backlog);
+      const meta = {
+        totalClusters: total_clusters || calendar.length + backlog.length,
+        domain: domain || "",
+        piecesPerWeek: pieces_per_week,
+        weeks: weeks || Math.max(...calendar.map((i) => i.week ?? 0), 1)
+      };
+
+      const excelBuf = await buildExcel(calendar, backlog, meta);
       const excelPath = path.join(output_dir, `${baseName}.xlsx`);
       writeFileSync(excelPath, excelBuf);
 
